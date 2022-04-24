@@ -43,8 +43,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         
 
         
-        float d = sdBox(uv2, vec2(.05));
-        //d = length(uv2) - .1;
+        // float d = sdBox(uv2, vec2(.0));
+        float d = length(uv2);
         
         // vec4 bg = vec4(0, .5, 1, 1);
         // vec4 fg = vec4(1) - bg;
