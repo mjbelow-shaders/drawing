@@ -74,7 +74,16 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	fragColor = vec4(st.x, st.y, 0, 1);
 	
-	fragColor = texture(iChannel0, st);
+	
+    float select = step(float(0) - 0.5, texId) * 
+                   step(texId, float(0) + .5);
+				   
+	// if(select == 1.)
+	{
+		float d = length(eye.xy);
+		fragColor = vec4(d);
+	}
+	// fragColor = texture(iChannel0, st);
 }
 
 void main( void ){vec4 color = vec4(0.0,0.0,0.0,0.0);mainImage( color, gl_FragCoord.xy );FragColor = color;}
