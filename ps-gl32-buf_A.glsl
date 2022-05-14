@@ -69,11 +69,23 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     return;
     }
 	
-	vec3 viewDir = rayDirection(120.0, iResolution.xy, fragCoord);
+	// fragColor = vec4(.5);
+	// return;
+	
+	vec3 viewDir = rayDirection(126.0, iResolution.xy, fragCoord);
 	vec3 eye = vec3(8.0, 5.0 * sin(0.2 * iTime), 7.0);
 
     float mx=iMouse.x/iResolution.x*PI*2.0;
     float my=iMouse.y/iResolution.y*PI + PI/2.0;
+	// mx = 3.141592653589;
+	// my = 0.5;
+	
+	float mx_diff = 3.141592653589 - mx;
+	float my_diff = 0. - my;
+	
+	mx += mx_diff;
+	my += my_diff;
+	
     eye = vec3(cos(my)*cos(mx),sin(my),cos(my)*sin(mx));//*7.;
 	
 	mat3 viewToWorld = viewMatrix(eye, vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
@@ -87,9 +99,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	// fragColor = vec4(st.x, st.y, 0, 1);
 	
+	int area = 0;
 	
-    float select = step(float(0) - 0.5, texId) * 
-                   step(texId, float(0) + .5);
+    float select = step(float(area) - 0.5, texId) * 
+                   step(texId, float(area) + .5);
 
 	//fragColor = vec4(0);
     //fragColor = vec4(0,pressure,0,0);
