@@ -1,4 +1,4 @@
-
+font = gh_utils.font_create("courier new", 38)
 
 --[[
 local demo_dir = gh_utils.get_demo_dir()  

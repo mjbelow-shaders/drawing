@@ -9,8 +9,11 @@ uniform vec4 iMouse;
 
 uniform sampler2D iChannel0;
 
-void cubemap(vec3 r, out float texId, out vec2 st) {
+void cubemap(vec3 r, out float texId, out vec2 st, mat3 viewToWorld, vec3 viewDir) {
    vec3 uvw;
+   // r = viewToWorld * viewDir;
+   // r = inverse(viewToWorld) * r;
+   
    vec3 absr = abs(r);
    if (absr.x > absr.y && absr.x > absr.z) {
      // x major
@@ -28,6 +31,7 @@ void cubemap(vec3 r, out float texId, out vec2 st) {
      uvw = vec3(r.xy, absr.z) * vec3(mix(1.0, -1.0, negz), -1, 1);
      texId = 4.0 + negz;
    }
+   //st = vec2(uvw.x / uvw.z, uvw.y / uvw.z);
    st = vec2(uvw.xy / uvw.z + 1.) * .5;
 }
 
@@ -46,7 +50,7 @@ mat3 viewMatrix(vec3 eye, vec3 center, vec3 up) {
 }
 
 
-#define PI 3.14159
+#define PI 3.141592653589
 
 float det(mat2 matrix) {
     return matrix[0].x * matrix[1].y - matrix[0].y * matrix[1].x;
@@ -64,33 +68,77 @@ mat2 inv(mat2 matrix) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
+	// vec2 iResolution = vec2(1280, 720);
     // Normalized pixel coordinates (from 0 to 1)
     vec2 uv = fragCoord/iResolution.xy;
 
     fragColor = texture(iChannel0, uv);
+	fragColor = step(1., fragColor);
 	//fragColor = vec4(1);
 	
-	vec3 viewDir = rayDirection(126.0, iResolution.xy, fragCoord);
+	vec3 viewDir = rayDirection(126, iResolution.xy, fragCoord);
 	vec3 eye = vec3(8.0, 5.0 * sin(0.2 * iTime), 7.0);
 
     float mx=iMouse.x/iResolution.x*PI*2.0;
     float my=iMouse.y/iResolution.y*PI + PI/2.0;
-	// mx = 3.141592653589;
+	// mx = 3.14159;
 	// my = 0.5;
+	
+	// mx = 3.14159;
+	// my = .45;
+    // mx=iMouse.x/iResolution.x*PI*2.0;
+    // my= PI/2.0;
+	
+	// mx = 1.5707963267948966192;
+	// my = 0.5;
+	
     eye = vec3(cos(my)*cos(mx),sin(my),cos(my)*sin(mx));//*7.;
 	
-	mat3 viewToWorld = viewMatrix(eye, vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
+	// eye = vec3(-1, 0, 0);//0
+	// eye = vec3(1, 0, 0);//1
+	
+	// eye = vec3(0.001, -1, 0);//2
+	// eye = vec3(0.001, -1, 0.001);//2
+	// eye = vec3(0.001, 1, 0);//3
+	
+	// eye = vec3(0, 0, -1);//4
+	// eye = vec3(0, 0, 1);//5
+	
+	vec3 center = vec3(0.0, 0.0, 0.0);
+	vec3 up = vec3(0.0, 1.0, 0.0);
+	
+    vec3 f = normalize(center - eye);
+    vec3 s = normalize(cross(f, up));
+    vec3 u = cross(s, f);
+	
+	
+	mat3 viewToWorld = mat3(s, u, -f);
 	
 	vec3 worldDir = (viewToWorld) * viewDir;
 	
 	float texId;
 	vec2 st;
 	
-	cubemap(worldDir, texId, st);
+	cubemap(worldDir, texId, st, viewToWorld, viewDir);
 	
-	fragColor = vec4(st.x, st.y, 0, 1);
+	// fragColor = vec4(st.x, st.y, 0, 1);
 	
 	int area = 0;
+	
+	vec3 coord = vec3(338, 143, 1);
+	// coord.x = 0;
+	coord.y = 0;
+	
+	vec3 absr = abs(worldDir);
+	if (absr.x > absr.y && absr.x > absr.z) {
+	// texId = step(worldDir.x, 0);
+	}
+	else
+	{
+		// texId = 1.;
+	}
+	
+	
 	
     float select = step(float(area) - 0.5, texId) * 
                    step(texId, float(area) + .5);
@@ -98,8 +146,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	if(select == 1.)
 	{
 		float d = length(eye.xy);
-		fragColor = vec4(d);
+		// fragColor = vec4(worldDir.xxxy);
+		 // fragColor = 1. - fragColor;
+		 fragColor = texture(iChannel0, st);
+		//fragColor = vec4(1,0,0,1);
+		// fragColor = vec4(0);
+		// fragColor = fragColor.bbba;
 	}
+	
 	
 	mat2 mm = mat2(
 	1, uv.x,
@@ -117,21 +171,17 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	uv *= tr;
 	uv = fragCoord/iResolution.xy;
-	fragColor *= texture(iChannel0, uv);
+	// fragColor *= texture(iChannel0, uv);
 	
-	mat3 m3 = mat3(
-	1,0,0,
-	0,1,0,
-	0,0,1
-	);
+	// 370, 255
 	
-	mat3 m3_i = inverse(m3);
+	vec2 uv2 = (fragCoord - vec2(370, 255)) / iResolution.yy;  //.5
+	float dd = length(uv2);
+
 	
-	float ddd = determinant(m3_i);
-	
-	// fragColor *= ddd;
-	
-	// fragColor *= m3[0].z;
+	float pos = length((fragCoord - iMouse.xy) / iResolution.y);
+	fragColor = mix(fragColor, 1.-fragColor, step(.05, pos));
+	fragColor = mix(fragColor, 1.-fragColor, step(.1, pos));
 }
 
 void main( void ){vec4 color = vec4(0.0,0.0,0.0,0.0);mainImage( color, gl_FragCoord.xy );FragColor = color;}

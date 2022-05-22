@@ -109,7 +109,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	// fragColor = vec4(st.x, st.y, 0, 1);
 	
-	int area = 1;
+	int area = 5;
 	
     float select = step(float(area) - 0.5, texIdMouse) * 
                    step(texIdMouse, float(area) + .5);
