@@ -8,6 +8,11 @@ uniform int iFrame;
 uniform vec4 iMouse;
 
 uniform sampler2D iChannel0;
+uniform sampler2D iChannel1;
+uniform sampler2D iChannel2;
+uniform sampler2D iChannel3;
+uniform sampler2D iChannel4;
+uniform sampler2D iChannel5;
 
 void cubemap(vec3 r, out float texId, out vec2 st, mat3 viewToWorld, vec3 viewDir) {
    vec3 uvw;
@@ -64,6 +69,11 @@ mat2 inv(mat2 matrix) {
     matrix[1].y, -matrix[0].y,
     -matrix[1].x, matrix[0].x
     ) / det;
+}
+
+bool inArea(int area, float texId)
+{
+	return (step(float(area) - 0.5, texId) * step(texId, float(area) + .5)) == 1.;
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
@@ -143,15 +153,35 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     float select = step(float(area) - 0.5, texId) * 
                    step(texId, float(area) + .5);
 				   
-	if(select == 1.)
+	if (inArea(0, texId))
 	{
-		float d = length(eye.xy);
-		// fragColor = vec4(worldDir.xxxy);
-		 // fragColor = 1. - fragColor;
-		 fragColor = texture(iChannel0, st);
-		//fragColor = vec4(1,0,0,1);
-		// fragColor = vec4(0);
-		// fragColor = fragColor.bbba;
+		fragColor = texture(iChannel0, st);
+		fragColor = 1. - fragColor;
+	}
+	if (inArea(1, texId))
+	{
+		fragColor = texture(iChannel1, st);
+		fragColor = 1. - fragColor;
+	}
+	if (inArea(2, texId))
+	{
+		fragColor = texture(iChannel2, st);	
+		fragColor = 1. - fragColor;
+	}
+	if (inArea(3, texId))
+	{
+		fragColor = texture(iChannel3, st);	
+		fragColor = 1. - fragColor;
+	}
+	if (inArea(4, texId))
+	{
+		fragColor = texture(iChannel4, st);	
+		fragColor = 1. - fragColor;
+	}
+	if (inArea(5, texId))
+	{
+		fragColor = texture(iChannel5, st);	
+		fragColor = 1. - fragColor;
 	}
 	
 	

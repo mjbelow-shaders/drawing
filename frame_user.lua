@@ -47,14 +47,14 @@ if ((do_animation == 1) and (buf_C > 0) and (shadertoy_prog_buf_c > 0)) then
   gh_render_target.bind(buf_C)
   --gh_renderer.clear_color_depth_buffers(0.0, 0.0, 0.0, 0.0, 1.0)
 
-  gh_gpu_program.bind(shadertoy_prog_buf_C)
-  gh_gpu_program.uniform3f(shadertoy_prog_buf_C, "iResolution", winW, winH, 0.0)
-  gh_gpu_program.uniform1f(shadertoy_prog_buf_C, "iTime", curtime)
-  gh_gpu_program.uniform4f(shadertoy_prog_buf_C, "iMouse", mx, my, mz, mz)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_C, "iFrame", curframe)
+  gh_gpu_program.bind(shadertoy_prog_buf_c)
+  gh_gpu_program.uniform3f(shadertoy_prog_buf_c, "iResolution", winW, winH, 0.0)
+  gh_gpu_program.uniform1f(shadertoy_prog_buf_c, "iTime", curtime)
+  gh_gpu_program.uniform4f(shadertoy_prog_buf_c, "iMouse", mx, my, mz, mz)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_c, "iFrame", curframe)
 
   gh_texture.rt_color_bind(buf_C, 0)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_C, "iChannel0", 0)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_c, "iChannel0", 0)
 
   draw_quad(0, 0, winW, winH)
 
@@ -67,14 +67,14 @@ if ((do_animation == 1) and (buf_D > 0) and (shadertoy_prog_buf_d > 0)) then
   gh_render_target.bind(buf_D)
   --gh_renderer.clear_color_depth_buffers(0.0, 0.0, 0.0, 0.0, 1.0)
 
-  gh_gpu_program.bind(shadertoy_prog_buf_D)
-  gh_gpu_program.uniform3f(shadertoy_prog_buf_D, "iResolution", winW, winH, 0.0)
-  gh_gpu_program.uniform1f(shadertoy_prog_buf_D, "iTime", curtime)
-  gh_gpu_program.uniform4f(shadertoy_prog_buf_D, "iMouse", mx, my, mz, mz)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_D, "iFrame", curframe)
+  gh_gpu_program.bind(shadertoy_prog_buf_d)
+  gh_gpu_program.uniform3f(shadertoy_prog_buf_d, "iResolution", winW, winH, 0.0)
+  gh_gpu_program.uniform1f(shadertoy_prog_buf_d, "iTime", curtime)
+  gh_gpu_program.uniform4f(shadertoy_prog_buf_d, "iMouse", mx, my, mz, mz)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_d, "iFrame", curframe)
 
   gh_texture.rt_color_bind(buf_D, 0)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_D, "iChannel0", 0)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_d, "iChannel0", 0)
 
   draw_quad(0, 0, winW, winH)
 
@@ -87,14 +87,14 @@ if ((do_animation == 1) and (buf_E > 0) and (shadertoy_prog_buf_e > 0)) then
   gh_render_target.bind(buf_E)
   --gh_renderer.clear_color_depth_buffers(0.0, 0.0, 0.0, 0.0, 1.0)
 
-  gh_gpu_program.bind(shadertoy_prog_buf_E)
-  gh_gpu_program.uniform3f(shadertoy_prog_buf_E, "iResolution", winW, winH, 0.0)
-  gh_gpu_program.uniform1f(shadertoy_prog_buf_E, "iTime", curtime)
-  gh_gpu_program.uniform4f(shadertoy_prog_buf_E, "iMouse", mx, my, mz, mz)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_E, "iFrame", curframe)
+  gh_gpu_program.bind(shadertoy_prog_buf_e)
+  gh_gpu_program.uniform3f(shadertoy_prog_buf_e, "iResolution", winW, winH, 0.0)
+  gh_gpu_program.uniform1f(shadertoy_prog_buf_e, "iTime", curtime)
+  gh_gpu_program.uniform4f(shadertoy_prog_buf_e, "iMouse", mx, my, mz, mz)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_e, "iFrame", curframe)
 
   gh_texture.rt_color_bind(buf_E, 0)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_E, "iChannel0", 0)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_e, "iChannel0", 0)
 
   draw_quad(0, 0, winW, winH)
 
@@ -107,14 +107,14 @@ if ((do_animation == 1) and (buf_F > 0) and (shadertoy_prog_buf_f > 0)) then
   gh_render_target.bind(buf_F)
   --gh_renderer.clear_color_depth_buffers(0.0, 0.0, 0.0, 0.0, 1.0)
 
-  gh_gpu_program.bind(shadertoy_prog_buf_F)
-  gh_gpu_program.uniform3f(shadertoy_prog_buf_F, "iResolution", winW, winH, 0.0)
-  gh_gpu_program.uniform1f(shadertoy_prog_buf_F, "iTime", curtime)
-  gh_gpu_program.uniform4f(shadertoy_prog_buf_F, "iMouse", mx, my, mz, mz)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_F, "iFrame", curframe)
+  gh_gpu_program.bind(shadertoy_prog_buf_f)
+  gh_gpu_program.uniform3f(shadertoy_prog_buf_f, "iResolution", winW, winH, 0.0)
+  gh_gpu_program.uniform1f(shadertoy_prog_buf_f, "iTime", curtime)
+  gh_gpu_program.uniform4f(shadertoy_prog_buf_f, "iMouse", mx, my, mz, mz)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_f, "iFrame", curframe)
 
   gh_texture.rt_color_bind(buf_F, 0)
-  gh_gpu_program.uniform1i(shadertoy_prog_buf_F, "iChannel0", 0)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_f, "iChannel0", 0)
 
   draw_quad(0, 0, winW, winH)
 
