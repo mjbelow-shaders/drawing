@@ -131,7 +131,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	
 	cubemap(worldDir, texId, st, viewToWorld, viewDir);
 	
-	// fragColor = vec4(st.x, st.y, 0, 1);
+	fragColor = vec4(st.x, st.y, 0, 1);
 	
 	int area = 0;
 	
@@ -155,33 +155,33 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 				   
 	if (inArea(0, texId))
 	{
-		fragColor = texture(iChannel0, st);
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel0, st);
+		// fragColor = 1. - fragColor;
 	}
 	if (inArea(1, texId))
 	{
-		fragColor = texture(iChannel1, st);
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel1, st);
+		// fragColor = 1. - fragColor;
 	}
 	if (inArea(2, texId))
 	{
-		fragColor = texture(iChannel2, st);	
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel2, st);	
+		// fragColor = 1. - fragColor;
 	}
 	if (inArea(3, texId))
 	{
-		fragColor = texture(iChannel3, st);	
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel3, st);	
+		// fragColor = 1. - fragColor;
 	}
 	if (inArea(4, texId))
 	{
-		fragColor = texture(iChannel4, st);	
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel4, st);	
+		// fragColor = 1. - fragColor;
 	}
 	if (inArea(5, texId))
 	{
-		fragColor = texture(iChannel5, st);	
-		fragColor = 1. - fragColor;
+		fragColor *= texture(iChannel5, st);	
+		// fragColor = 1. - fragColor;
 	}
 	
 	
