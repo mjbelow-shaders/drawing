@@ -150,17 +150,17 @@ if ((do_animation == 1) and (img > 0) and (shadertoy_prog_img > 0)) then
 
   draw_quad(0, 0, winW, winH)
 
-pi = 3.14159265358979323846264
-info = math.floor(elapsed_time / pi % 12)
-str = "phase: %d"
-fx = 10
-fy = 10
-fn = 3;
+-- pi = 3.14159265358979323846264
+-- info = math.floor(elapsed_time / pi % 12)
+-- str = "phase: %d"
+-- fx = 10
+-- fy = 10
+-- fn = 3;
 
 -- eye = vec3();//*7.;
 -- gh_utils.font_render(font, fx, fy+fn, .0, .0, .0, 1.0, string.format(str, info))
-gh_utils.font_render(font, fx, fy+fn, .0, .0, .0, 1.0, string.format("x: %d, y: %d", mx, my))
-gh_utils.font_render(font, fx, fy+fn+40, .0, .0, .0, 1.0, string.format("x: %f, y: %f, z: %f", math.cos(my)*math.cos(mx),math.sin(my),math.cos(my)*math.sin(mx)))
+-- gh_utils.font_render(font, fx, fy+fn, .0, .0, .0, 1.0, string.format("x: %d, y: %d", mx, my))
+-- gh_utils.font_render(font, fx, fy+fn+40, .0, .0, .0, 1.0, string.format("x: %f, y: %f, z: %f", math.cos(my)*math.cos(mx),math.sin(my),math.cos(my)*math.sin(mx)))
 -- gh_renderer.set_blending_state(1)
 
   gh_render_target.unbind(img)
