@@ -6,6 +6,7 @@ uniform vec3 iResolution;
 uniform float iTime;
 uniform int iFrame;
 uniform vec4 iMouse;
+uniform int area;
 
 uniform sampler2D iChannel0;
 
@@ -108,8 +109,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	cubemap(worldDirMouse, texIdMouse, stMouse);
 	
 	// fragColor = vec4(st.x, st.y, 0, 1);
-	
-	int area = 4;
 	
     float select = step(float(area) - 0.5, texIdMouse) * 
                    step(texIdMouse, float(area) + .5);

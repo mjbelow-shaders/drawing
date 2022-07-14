@@ -12,6 +12,7 @@ if ((do_animation == 1) and (buf_A > 0) and (shadertoy_prog_buf_a > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_a, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_a, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_a, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_a, "area", 0)
 
   gh_texture.rt_color_bind(buf_A, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_a, "iChannel0", 0)
@@ -32,6 +33,7 @@ if ((do_animation == 1) and (buf_B > 0) and (shadertoy_prog_buf_b > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_b, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_b, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_b, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_b, "area", 1)
 
   gh_texture.rt_color_bind(buf_B, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_b, "iChannel0", 0)
@@ -52,6 +54,7 @@ if ((do_animation == 1) and (buf_C > 0) and (shadertoy_prog_buf_c > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_c, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_c, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_c, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_c, "area", 2)
 
   gh_texture.rt_color_bind(buf_C, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_c, "iChannel0", 0)
@@ -72,6 +75,7 @@ if ((do_animation == 1) and (buf_D > 0) and (shadertoy_prog_buf_d > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_d, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_d, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_d, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_d, "area", 3)
 
   gh_texture.rt_color_bind(buf_D, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_d, "iChannel0", 0)
@@ -92,6 +96,7 @@ if ((do_animation == 1) and (buf_E > 0) and (shadertoy_prog_buf_e > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_e, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_e, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_e, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_e, "area", 4)
 
   gh_texture.rt_color_bind(buf_E, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_e, "iChannel0", 0)
@@ -112,6 +117,7 @@ if ((do_animation == 1) and (buf_F > 0) and (shadertoy_prog_buf_f > 0)) then
   gh_gpu_program.uniform1f(shadertoy_prog_buf_f, "iTime", curtime)
   gh_gpu_program.uniform4f(shadertoy_prog_buf_f, "iMouse", mx, my, mz, mz)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_f, "iFrame", curframe)
+  gh_gpu_program.uniform1i(shadertoy_prog_buf_f, "area", 5)
 
   gh_texture.rt_color_bind(buf_F, 0)
   gh_gpu_program.uniform1i(shadertoy_prog_buf_f, "iChannel0", 0)
